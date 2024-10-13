@@ -9,15 +9,15 @@ import { FormsModule } from '@angular/forms';
 
 // Routes configureren
 export const routes = [
-  { path: 'files', component: FilesComponent }, // Standaard naar bestandsoverzicht
-  { path: 'chatbot', component: ChatbotComponent }, // Naar de chatbot
+  { path: 'files', component: FilesComponent }, 
+  { path: 'chatbot', component: ChatbotComponent }, 
   {path: '', component: ChatbotComponent}
 ];
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes), // Router-configuratie
-    provideClientHydration(), // Zorgt voor ondersteuning van server-side rendering (optioneel)
-    FormsModule // FormsModule toevoegen voor ngModel
+    provideRouter(routes), 
+    provideClientHydration(), 
+    FormsModule 
   ]
 };

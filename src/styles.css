@@ -84,23 +84,23 @@ textarea {
 
   .custom-file-upload {
     display: inline-block;
-    padding: 3px 7px; /* Padding rondom de tekst */
-    cursor: pointer; /* Geef aan dat het aanklikbaar is */
-    background-color: grey; /* Achtergrondkleur */
-    color: white; /* Tekstkleur */
-    text-align: center; /* Centreer de tekst */
-    border: 1px solid black; /* Voeg een rand toe die overeenkomt met de achtergrondkleur */
-    transition: background-color 0.3s; /* Effect bij hover */
+    padding: 3px 7px; 
+    cursor: pointer; 
+    background-color: grey;
+    color: white; 
+    text-align: center; 
+    border: 1px solid black; 
+    transition: background-color 0.3s; 
   }
   
   .custom-file-upload:hover {
-    background-color:darkgray /* Donkerder bij hover */
+    background-color:darkgray
   }
 
   .selected {
-    display: flex; /* Gebruik flexbox */
-    align-items: center; /* Centreer de items verticaal */
-    gap: 10px; /* Ruimte tussen de elementen */
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
   }
   .selectedFile
   {
