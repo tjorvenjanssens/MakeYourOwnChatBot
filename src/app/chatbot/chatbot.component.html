@@ -1,0 +1,15 @@
+<h2>MAKE YOUR OWN CHATBOT</h2>
+<h3>Voeg eerst bestanden toe via</h3>
+<a href="/files" routerLinkActive="active">Bestand toevoegen</a>
+
+<h3>Stel dan je vragen aan je Chatbot</h3>
+<p>Hij zal deze zo goed mogelijk antwoorden</p>
+
+<h2>Chatbot</h2>
+<div class="chatbot-response" *ngIf="chatbotResponse" [innerHTML]="chatbotResponse"></div>
+
+
+<textarea id="input" [(ngModel)]="userInput" placeholder="Typ hier je vraag..."></textarea>
+<button (click)="sendMessage(userInput)">Stuur Bericht</button>
+
+

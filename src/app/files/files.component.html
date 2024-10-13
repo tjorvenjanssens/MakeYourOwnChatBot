@@ -1,0 +1,21 @@
+<div class="page">
+  <!--
+  <div class="addFile">
+    <p *ngIf="blobs == null">Nog geen bestanden opgeladen</p>
+    <ul *ngIf="blobs != null">
+      <li *ngFor="let blob of blobs">{{ blob }}</li>
+    </ul>
+  </div>
+    -->
+<div class="chooseNewFile">
+  <h2>Nieuw bestand toevoegen:</h2>
+  <div class="selected">
+    <label for="fileInput" class="custom-file-upload">Kies bestand</label>
+    <input id="fileInput" type="file" (change)="onFileSelected($event)" style="display: none;" />
+    <span *ngIf="selectedFileName" class="selectedFile">{{ selectedFileName }}</span>
+  </div>
+</div>
+  <div class="uploadNewFile">
+    <button *ngIf="selectedFileName" (click)="uploadFile()">Bestand toevoegen</button>
+  </div>
+</div>
