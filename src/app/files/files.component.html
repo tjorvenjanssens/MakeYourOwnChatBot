@@ -1,12 +1,4 @@
 <div class="page">
-  <!--
-  <div class="addFile">
-    <p *ngIf="blobs == null">Nog geen bestanden opgeladen</p>
-    <ul *ngIf="blobs != null">
-      <li *ngFor="let blob of blobs">{{ blob }}</li>
-    </ul>
-  </div>
-    -->
 <div class="chooseNewFile">
   <h2>Nieuw bestand toevoegen:</h2>
   <div class="selected">
@@ -17,5 +9,8 @@
 </div>
   <div class="uploadNewFile">
     <button *ngIf="selectedFileName" (click)="uploadFile()">Bestand toevoegen</button>
+  </div>
+  <div *ngIf="uploadStatus" class="upload-status">
+    {{ uploadStatus }}
   </div>
 </div>

@@ -34,7 +34,12 @@
             "prerender": true,
             "ssr": {
               "entry": "server.ts"
-            }
+            },
+            "allowedCommonJsDependencies": [
+      "https-proxy-agent",
+      "http-proxy-agent",
+      "fast-xml-parser"
+    ]
           },
           "configurations": {
             "production": {

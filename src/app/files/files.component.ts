@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BlobServiceClient } from '@azure/storage-blob';
+import { FileService } from '../services/file.service';
 import { CommonModule } from '@angular/common';
 
 
@@ -14,8 +14,10 @@ export class FilesComponent implements OnInit {
   file: File | null = null;
   blobs: string[] = [];
   selectedFileName: string | null = null;
+  uploadStatus: string | null = null;
+
   
-  constructor() { }
+  constructor(private fileService: FileService) { }
 
   async ngOnInit() {
     /**
@@ -29,32 +31,22 @@ export class FilesComponent implements OnInit {
 
   async uploadFile() {
     if (this.file) {
-      const blobServiceClient = new BlobServiceClient('https://dndcampagnes.blob.core.windows.net/?sv=2022-11-02&ss=bfqt&srt=o&sp=wactfx&se=2025-10-13T14:23:08Z&st=2024-10-13T06:23:08Z&spr=https,http&sig=nDevbR%2FmGvZJCCHUtu0xWxwxKvZmngRwOqlWX9sNgl4%3D');
-      const containerClient = blobServiceClient.getContainerClient('campagnes');
-      const blockBlobClient = containerClient.getBlockBlobClient(this.file.name);
-
       try {
-        await blockBlobClient.uploadBrowserData(this.file);
-        console.log('Bestand succesvol geüpload.');
-        await this.listFiles(); // Vernieuw de lijst na uploaden
+        this.uploadStatus = await this.fileService.uploadFile(this.file);
+       
       } catch (error) {
-        console.error('Uploaden mislukt: ', error);
+        this.uploadStatus = 'Fout bij opladen: ' + error;
       }
     } else {
-      console.warn('Geen bestand geselecteerd.');
+      this.uploadStatus = 'Geen bestand geselecteerd.';
     }
   }
 
   async listFiles() {
-    const blobServiceClient = new BlobServiceClient('https://dndcampagnes.blob.core.windows.net/?sv=2022-11-02&ss=bfqt&srt=o&sp=rltfx&se=2025-10-13T14:27:38Z&st=2024-10-13T06:27:38Z&spr=https,http&sig=9etNR7AlaPI33v9mHS0whfoDll42V2yFzcXLxm%2BkFKs%3D');
-    const containerClient = blobServiceClient.getContainerClient('campagnes');
     try {
-      this.blobs = []; // Leeg de lijst voordat je nieuwe bestanden ophaalt
-      for await (const blob of containerClient.listBlobsFlat()) {
-        this.blobs.push(blob.name);
-      }
+      this.blobs = await this.fileService.listFiles();
     } catch (error) {
-      console.error('Fout bij ophalen van bestanden: ', error);
+      console.error(error);
     }
   }
 }
